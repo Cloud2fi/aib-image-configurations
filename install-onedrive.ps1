@@ -10,5 +10,6 @@ write-host 'AIB Customization: Download OneDrive installer finished'
 
 write-host 'AIB Customization: Start OneDrive installer'
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force -Verbose
-.\OneDriveSetup.exe /AllUsers -Verbose 
+.\OneDriveSetup.exe /Uninstall /AllUsers -Verbose
+.\OneDriveSetup.exe /Silent /AllUsers -Verbose 
 write-host 'AIB Customization: Finished OneDrive installer' 
