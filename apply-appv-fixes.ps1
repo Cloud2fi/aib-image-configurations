@@ -13,7 +13,9 @@ $acl = Get-Acl -Path $folderPath
 $acl.SetAccessRuleProtection($true, $true)
 Set-Acl -Path $folderPath -AclObject $acl
 
-    # Set correct NTFS permissions
+    # Set correct NTFS permissions and owner
+$owner = New-Object System.Security.Principal.NTAccount("NT AUTHORITY\SYSTEM")
+$acl.SetOwner($owner)
     # SYSTEM
 $identity = 'NT AUTHORITY\SYSTEM'
 $rights = 'FullControl'
