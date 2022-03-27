@@ -10,16 +10,20 @@ if (Test-Path -Path $folderPath) {
 New-Item -Path 'C:\ProgramData' -Name 'App-V' -ItemType 'Directory'
     # Disable inheritance 
 $acl = Get-Acl -Path $folderPath
-$acl.SetAccessRuleProtection($true, $true)
-Set-Acl -Path $folderPath -AclObject $acl
+$acl.SetAccessRuleProtection($true, $false)
+(Get-Item $folderPath).SetAccessControl($acl)
+Clear-Variable -Name 'acl'
+
+$acl = New-Object System.Security.AccessControl.DirectorySecurity
+$acl.SetAccessRuleProtection($true, $false)
 
     # Set correct NTFS permissions and owner
     # SYSTEM
 $identity = 'NT AUTHORITY\SYSTEM'
 $rights = 'FullControl'
-$inheritance = 'ContainerInherit, ObjectInherit' #Other options: [enum]::GetValues('System.Security.AccessControl.Inheritance')
-$propagation = 'None' #Other options: [enum]::GetValues('System.Security.AccessControl.PropagationFlags')
-$type = 'Allow' #Other options: [enum]::GetValues('System.Securit y.AccessControl.AccessControlType')
+$inheritance = 'ContainerInherit, ObjectInherit'
+$propagation = 'None' 
+$type = 'Allow' 
 $ACE = New-Object System.Security.AccessControl.FileSystemAccessRule($identity,$rights,$inheritance,$propagation,$type)
 $acl.SetAccessRule($ACE)
 Clear-Variable -Name 'ACE'
@@ -45,7 +49,7 @@ $acl.SetAccessRule($ACE)
 Clear-Variable -Name 'ACE'
 
     # Authenticated Users
-$identity = 'BUILTIN\Authenticated Users'
+$identity = 'Authenticated Users'
 $rights = 'Read'
 $inheritance = 'ContainerInherit, ObjectInherit' #Other options: [enum]::GetValues('System.Security.AccessControl.Inheritance')
 $propagation = 'None' #Other options: [enum]::GetValues('System.Security.AccessControl.PropagationFlags')
@@ -53,3 +57,5 @@ $type = 'Allow' #Other options: [enum]::GetValues('System.Securit y.AccessContro
 $ACE = New-Object System.Security.AccessControl.FileSystemAccessRule($identity,$rights,$inheritance,$propagation,$type)
 $acl.SetAccessRule($ACE)
 Clear-Variable -Name 'ACE'
+
+(Get-Item $folderPath).SetAccessControl($acl)
