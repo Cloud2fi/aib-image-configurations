@@ -14,8 +14,6 @@ $acl.SetAccessRuleProtection($true, $true)
 Set-Acl -Path $folderPath -AclObject $acl
 
     # Set correct NTFS permissions and owner
-$owner = New-Object System.Security.Principal.NTAccount("NT AUTHORITY\SYSTEM")
-$acl.SetOwner($owner)
     # SYSTEM
 $identity = 'NT AUTHORITY\SYSTEM'
 $rights = 'FullControl'
@@ -23,8 +21,7 @@ $inheritance = 'ContainerInherit, ObjectInherit' #Other options: [enum]::GetValu
 $propagation = 'None' #Other options: [enum]::GetValues('System.Security.AccessControl.PropagationFlags')
 $type = 'Allow' #Other options: [enum]::GetValues('System.Securit y.AccessControl.AccessControlType')
 $ACE = New-Object System.Security.AccessControl.FileSystemAccessRule($identity,$rights,$inheritance,$propagation,$type)
-$acl = Get-Acl -Path $folderPath
-$acl.AddAccessRule($ACE)
+$acl.SetAccessRule($ACE)
 Clear-Variable -Name 'ACE'
 
     # Administrators
@@ -34,8 +31,7 @@ $inheritance = 'ContainerInherit, ObjectInherit' #Other options: [enum]::GetValu
 $propagation = 'None' #Other options: [enum]::GetValues('System.Security.AccessControl.PropagationFlags')
 $type = 'Allow' #Other options: [enum]::GetValues('System.Securit y.AccessControl.AccessControlType')
 $ACE = New-Object System.Security.AccessControl.FileSystemAccessRule($identity,$rights,$inheritance,$propagation,$type)
-$acl = Get-Acl -Path $folderPath
-$acl.AddAccessRule($ACE)
+$acl.SetAccessRule($ACE)
 Clear-Variable -Name 'ACE'
 
     # TrustedInstaller
@@ -45,8 +41,7 @@ $inheritance = 'ContainerInherit, ObjectInherit' #Other options: [enum]::GetValu
 $propagation = 'None' #Other options: [enum]::GetValues('System.Security.AccessControl.PropagationFlags')
 $type = 'Allow' #Other options: [enum]::GetValues('System.Securit y.AccessControl.AccessControlType')
 $ACE = New-Object System.Security.AccessControl.FileSystemAccessRule($identity,$rights,$inheritance,$propagation,$type)
-$acl = Get-Acl -Path $folderPath
-$acl.AddAccessRule($ACE)
+$acl.SetAccessRule($ACE)
 Clear-Variable -Name 'ACE'
 
     # Authenticated Users
@@ -56,6 +51,5 @@ $inheritance = 'ContainerInherit, ObjectInherit' #Other options: [enum]::GetValu
 $propagation = 'None' #Other options: [enum]::GetValues('System.Security.AccessControl.PropagationFlags')
 $type = 'Allow' #Other options: [enum]::GetValues('System.Securit y.AccessControl.AccessControlType')
 $ACE = New-Object System.Security.AccessControl.FileSystemAccessRule($identity,$rights,$inheritance,$propagation,$type)
-$acl = Get-Acl -Path $folderPath
-$acl.AddAccessRule($ACE)
+$acl.SetAccessRule($ACE)
 Clear-Variable -Name 'ACE'
