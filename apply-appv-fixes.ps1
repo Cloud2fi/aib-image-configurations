@@ -11,6 +11,8 @@ New-Item -Path 'C:\ProgramData' -Name 'App-V' -ItemType 'Directory'
     # Disable inheritance 
 $acl = Get-Acl -Path $folderPath
 $acl.SetAccessRuleProtection($true, $false)
+$owner = New-Object System.Security.Principal.NTAccount("NT AUTHORITY\SYSTEM")
+$acl.SetOwner($owner)
 (Get-Item $folderPath).SetAccessControl($acl)
 Clear-Variable -Name 'acl'
 
