@@ -1,5 +1,6 @@
 # Import module using Windows PowerShell mode
-Import-Module -Name International
+# powershell.exe
+# Import-Module -Name 'International'
 
 # Sets the Windows UI language override setting for the current user account (Log off, log on required)
 Set-WinUILanguageOverride -Language 'en-FI'
