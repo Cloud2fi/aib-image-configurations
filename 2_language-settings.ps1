@@ -3,6 +3,8 @@
 # Import-Module -Name 'International'
 Write-Host "Custom script 2: Start language and regional settings script" -ForegroundColor Yellow
 
+Import-Module -Name International
+
 # Sets the Windows UI language override setting for the current user account (Log off, log on required)
 Write-Host "Custom script 2: Step 1: Begin setting Windows UI language override" -ForegroundColor Yellow
 Set-WinUILanguageOverride -Language 'en-FI'
@@ -31,8 +33,8 @@ Set-WinUserLanguageList $languageList
 Write-Host "Custom script 2: Step 5: End setting additional languages" -ForegroundColor Yellow
 
 # Copies the current user's international settings to Welcome screen, system accounts and New user accounts (restart required)
-Write-Host "Custom script 2: Step 6: Begin copying user international settings to system: Welcome screen and New user" -ForegroundColor Yellow
-Copy-UserInternationalSettingsToSystem -WelcomeScreen $true -NewUser $true
-Write-Host "Custom script 2: Step 6: End copying user international settings to system: Welcome screen and New user" -ForegroundColor Yellow
+#Write-Host "Custom script 2: Step 6: Begin copying user international settings to system: Welcome screen and New user" -ForegroundColor Yellow
+#Copy-UserInternationalSettingsToSystem -WelcomeScreen $true -NewUser $true
+#Write-Host "Custom script 2: Step 6: End copying user international settings to system: Welcome screen and New user" -ForegroundColor Yellow
 
 Write-Host "Custom script 2: End language and regional settings script" -ForegroundColor Yellow
