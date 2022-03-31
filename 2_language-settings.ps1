@@ -26,11 +26,11 @@ Set-WinHomeLocation -GeoId '77'
 Write-Host "Custom script 2: Step 4: End setting Windows home location" -ForegroundColor Yellow
 
 # Set additional languages
-Write-Host "Custom script 2: Step 5: Begin setting additional languages" -ForegroundColor Yellow
-$languageList = Get-WinUserLanguageList
-$languageList.add("fi-FI")
-Set-WinUserLanguageList $languageList
-Write-Host "Custom script 2: Step 5: End setting additional languages" -ForegroundColor Yellow
+#Write-Host "Custom script 2: Step 5: Begin setting additional languages" -ForegroundColor Yellow
+#$languageList = Get-WinUserLanguageList
+#$languageList.add("fi-FI")
+#Set-WinUserLanguageList $languageList
+#Write-Host "Custom script 2: Step 5: End setting additional languages" -ForegroundColor Yellow
 
 # Copies the current user's international settings to Welcome screen, system accounts and New user accounts (restart required)
 #Write-Host "Custom script 2: Step 6: Begin copying user international settings to system: Welcome screen and New user" -ForegroundColor Yellow
