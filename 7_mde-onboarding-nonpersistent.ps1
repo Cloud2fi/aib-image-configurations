@@ -62,7 +62,7 @@ Write-Host "Custom script 7: Step 4: End registry modification" -ForegroundColor
 
   # Install NuGet and psIni module
 Write-Host "Custom script 7: Step 5: Begin NuGet and psIni installs" -ForegroundColor Yellow
-Install-PackageProvider -Name 'NuGet' -MinimumVersion 2.8.5.201 -AllowClobber -Force
+Install-PackageProvider -Name 'NuGet' -MinimumVersion 2.8.5.201 -Force
 Install-Module -Name 'psIni' -MinimumVersion 3.1.2 -AllowClobber -Force
 Write-Host "Custom script 7: Step 5: End NuGet and psIni installs" -ForegroundColor Yellow
 
