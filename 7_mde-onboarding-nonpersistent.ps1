@@ -9,21 +9,26 @@ if (Test-Path -Path 'C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup') {
 }
 Write-Host "Custom script 7: Step 1: End test file path" -ForegroundColor Yellow
 
-  # Set up variables
-Write-Host "Custom script 7: Step 2: Begin setting variables" -ForegroundColor Yellow
+  # Copy files from temp to Startup
+Copy-Item 'C:\Temp\Onboard-NonPersistentMachine.ps1' -Destination 'C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup'
+Copy-Item 'C:\Temp\WindowsDefenderATPOnboardingScript.cmd' -Destination 'C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup'
 Set-Location -Path "C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\"
-$outputPath = "C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\"
-$file1_uri = "https://aibsokcustomscripts.blob.core.windows.net/aib-custom-scripts/Onboard-NonPersistentMachine.ps1"
-$file2_uri = "https://aibsokcustomscripts.blob.core.windows.net/aib-custom-scripts/WindowsDefenderATPOnboardingScript.cmd"
-$file1 = "Onboard-NonPersistentMachine.ps1"
-$file2 = "WindowsDefenderATPOnboardingScript.cmd"
-Write-Host "Custom script 7: Step 2: End setting variables" -ForegroundColor Yellow
+
+  # Set up variables
+#Write-Host "Custom script 7: Step 2: Begin setting variables" -ForegroundColor Yellow
+#Set-Location -Path "C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\"
+#$outputPath = "C:\Windows\System32\GroupPolicy\Machine\Scripts\Startup\"
+#$file1_uri = "https://aibsokcustomscripts.blob.core.windows.net/aib-custom-scripts/Onboard-NonPersistentMachine.ps1"
+#$file2_uri = "https://aibsokcustomscripts.blob.core.windows.net/aib-custom-scripts/WindowsDefenderATPOnboardingScript.cmd"
+#$file1 = "Onboard-NonPersistentMachine.ps1"
+#$file2 = "WindowsDefenderATPOnboardingScript.cmd"
+#Write-Host "Custom script 7: Step 2: End setting variables" -ForegroundColor Yellow
 
   # File downloads
-Write-Host "Custom script 7: Step 3: Begin file downloads" -ForegroundColor Yellow
-Invoke-WebRequest -Uri $file1_uri -OutFile $outputPath + '\' + $file1
-Invoke-WebRequest -Uri $file2_uri -OutFile $outputPath + '\' + $file2
-Write-Host "Custom script 7: Step 3: End file downloads" -ForegroundColor Yellow
+#Write-Host "Custom script 7: Step 3: Begin file downloads" -ForegroundColor Yellow
+#Invoke-WebRequest -Uri $file1_uri -OutFile $outputPath + '\' + $file1
+#Invoke-WebRequest -Uri $file2_uri -OutFile $outputPath + '\' + $file2
+#Write-Host "Custom script 7: Step 3: End file downloads" -ForegroundColor Yellow
 
   # Add script to Group Policy through the Registry
 Write-Host "Custom script 7: Step 4: Begin registry modification" -ForegroundColor Yellow
